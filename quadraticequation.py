@@ -2,10 +2,10 @@
 from tkinter import *
 from math import *
 
-from rkplot import *
-from rkraddegr import *
-from rkequatios import *
-from rkdeltaroots import *
+from qeplot import *
+from qeraddegr import *
+from qeequations import *
+from qedeltaroots import *
 first = 0
 last = 7 
 
@@ -17,10 +17,10 @@ class Application(Frame):
     def __init__(self, master):
 
         """ Inicjalizuj ramkę. """
-        super(Application, self).__init__(master)  
+        super(Application, self).__init__(master)
         self.grid()
         self.create_widgets()
-        self.master.geometry('+350+15')
+        self.master.geometry('+350+5')
 
     def create_widgets(self):
         """
@@ -269,6 +269,11 @@ Podaj współczynniki równania kwadratowego\n \
         self.wykonaj.bind("<Button>",self.productFormGetFactor)
 
 #==============================================================================
+        # etykieta z pustą linią ' '
+        self.linia = Label(self, font = ('calibri', 4),text = " ").grid(row = 5, column = 1)
+#                           height =1
+
+#==============================================================================
         # etykieta z widokiem do wyświetlenia informacji o wpisanych błędnie liczbach
         self.inst_lbl = Label(self, font = ('calibri', 14),
                               text = "     UWAGI     ",
@@ -278,7 +283,7 @@ Podaj współczynniki równania kwadratowego\n \
                               justify = 'right',
                               relief = 'ridge',
                               bd = 4
-                              ).grid(row = 5, column = 3, columnspan = 3)
+                              ).grid(row = 6, column = 3, columnspan = 3)
 
        # widżet Text do wyświetlenia informacji o wpisanych liczbach
         self.comment_txt = Text(self,
@@ -292,7 +297,11 @@ Podaj współczynniki równania kwadratowego\n \
                                 wrap = WORD,
                                 padx = 5,
                                 pady = 5)
-        self.comment_txt.grid(row = 5, column = 6, columnspan = 21, sticky = W)
+        self.comment_txt.grid(row = 6, column = 6, columnspan = 21, sticky = W)
+
+#==============================================================================
+        # etykieta z pustą linią ' '
+        self.linia = Label(self, font = ('calibri', 4),text = "").grid(row = 7, column = 1)
 
 #==============================================================================
         #DELTA
@@ -300,17 +309,17 @@ Podaj współczynniki równania kwadratowego\n \
         self.lbl = Label(self, font = ('calibri', 11),
                          text = "Delta:",
                          justify='left',
-                         ).grid(row = 6, column = 1, columnspan = 3, sticky = W)
+                         ).grid(row = 8, column = 1, columnspan = 3, sticky = W)
         
        # widżet Text do wyświetlenia wyniku delty
         self.delta_txt = Text(self, width = 25, height = 1, font = ('calibri', 11))
-        self.delta_txt.grid(row = 6, column = 6, columnspan=4, sticky = W)
+        self.delta_txt.grid(row = 8, column = 6, columnspan=4, sticky = W)
 
         # etykieta z obrazem wzoru delta
         wzor = PhotoImage (file = "wzory_delta.gif")
         self.obraz_6 = Label(self, image = wzor)
         self.obraz_6.image = wzor
-        self.obraz_6.grid(row = 7, column = 2, columnspan = 2)
+        self.obraz_6.grid(row = 9, column = 1, columnspan = 2)
 
 #==============================================================================
         #PIERWIASTKI
@@ -319,17 +328,17 @@ Podaj współczynniki równania kwadratowego\n \
                          text = 'Pierwiastki równania \n(miejsca zerowe):  ',
                          justify='left',
                          height=2
-                         ).grid(row = 9, column = 1, columnspan=5,  sticky = W)
+                         ).grid(row = 10, column = 1, columnspan=5,  sticky = W)
         
        # widżet Text do wyświetlenia wartości pierwiastków równania
         self.zero_place_txt = Text(self, width = 25, height = 2, font = ('calibri', 11))
-        self.zero_place_txt.grid(row = 9, column = 6, columnspan=4, sticky = W)
+        self.zero_place_txt.grid(row = 10, column = 6, columnspan=4, sticky = W)
      
         # etykieta z obrazem wzorów pierwiastków x1, x2 i wspólnego x1=x2
         wzor = PhotoImage (file = "wzory_x1_x2_x12.gif")
         self.obraz_1 = Label(self, image = wzor)
         self.obraz_1.image = wzor
-        self.obraz_1.grid(row = 10, column = 1, columnspan=3, sticky = W)
+        self.obraz_1.grid(row = 11, column = 1, columnspan=3, sticky = W)
 
 #==============================================================================
         #WIERZCHOŁEK
@@ -338,17 +347,17 @@ Podaj współczynniki równania kwadratowego\n \
                          text = 'Współrzędne wierzchołka \nfunkcji:  ',
                          justify='left',
                          height=2,
-                         ).grid(row = 14, column = 1, columnspan=4,  sticky = W)
+                         ).grid(row = 12, column = 1, columnspan=4,  sticky = W)
         
        # idżet Text do wyświetlenia współrzednych wierzchołka funkcji
         self.function_vertex_txt = Text(self, width = 25, height = 2, font = ('calibri', 11))
-        self.function_vertex_txt.grid(row = 14, column = 6, columnspan = 4, sticky = W)
+        self.function_vertex_txt.grid(row = 12, column = 6, columnspan = 4, sticky = W)
 
         # etykieta z obrazem wzorów p i q
         wzor = PhotoImage (file = 'wzory_p_q.gif')
         self.obraz_4 = Label(self, image = wzor)
         self.obraz_4.image = wzor
-        self.obraz_4.grid(row = 15, column = 1, columnspan=4, sticky = W)
+        self.obraz_4.grid(row = 13, column = 1, columnspan=4, sticky = W)
 
 #==============================================================================
         # etykieta z pustą linią ' '
@@ -361,36 +370,36 @@ Podaj współczynniki równania kwadratowego\n \
         # etykieta z widokiem postaci ogólnej równania
         self.lbl = Label(self, font = ('calibri', 11),
                               text = "Postać ogólna:  ", justify='left',
-                              ).grid(row = 6, column = 11, columnspan=20,  sticky = W)
+                              ).grid(row = 8, column = 11, columnspan=20,  sticky = W)
         
        # utwórz widżet Text do wyświetlenia postaci kanonicznej równania
         self.general_txt = Text(self, width = 45, height = 1)
-        self.general_txt.grid(row = 6, column = 14, columnspan=14, sticky = W)
+        self.general_txt.grid(row = 8, column = 14, columnspan=14, sticky = W)
 
         # etykieta z widokiem postaci kanonicznej równania
         self.lbl = Label(self, font = ('calibri', 11),
-                              text = "Postać kanoniczna:  ", justify='left',
-                              ).grid(row = 7, column = 11, columnspan=20,  sticky = W)
+                              text = "Postać kanoniczna:                            ", justify='left',
+                              ).grid(row = 9, column = 11, columnspan=3,  sticky = S)
         
        # utwórz widżet Text do wyświetlenia postaci kanonicznej równania
         self.canon_txt = Text(self, width = 45, height = 1)
-        self.canon_txt.grid(row = 7, column = 14, columnspan=14, sticky = W)
+        self.canon_txt.grid(row = 9, column = 14, columnspan=7, sticky = S)
         
         # etykieta z widokiem postaci iloczynowej równania
         self.inst_lbl = Label(self, font = ('calibri', 11),
                               text = "Postać iloczynowa:  ",
                               justify='left'
-                              ).grid(row = 8, column = 11, columnspan=20,  sticky = W)
+                              ).grid(row = 10, column = 11, columnspan=20,  sticky = W)
         
        # utwórz widżet Text do wyświetlenia wartości pierwiastków równania
         self.product_txt = Text(self, width = 45, height = 1)
-        self.product_txt.grid(row = 8, column = 14, columnspan=14, sticky = W)#  
+        self.product_txt.grid(row = 10, column = 14, columnspan=14, sticky = W)#  
 
 #==============================================================================
         # etykieta z widokiem do wyświetlenia informacji o przebiegu funkcji - góra/dół
         self.lbl = Label(self, font = ('calibri', 11),
                                        text = "WYNIKI                           ",
-                                       ).grid(row = 10, column = 11, columnspan = 20, sticky = N)
+                                       ).grid(row = 11, column = 11, columnspan = 20, sticky = N)
        # widżet Text do wyświetlenia informacji o wikach obliczeń
         self.results_txt = Text(self,
                                 width = 74,
@@ -399,7 +408,18 @@ Podaj współczynniki równania kwadratowego\n \
                                 wrap = WORD,
                                 padx = 5,
                                 pady = 5)
-        self.results_txt.grid(row = 10, column = 11, rowspan = 7, columnspan = 20, sticky = W)
+        self.results_txt.grid(row = 11, column = 11, rowspan = 7, columnspan = 20, sticky = W)
+
+
+        # etykieta z obrazem LOGO PYTHON
+        pusty = PhotoImage (file = "fig_0.png")
+        self.obraz = Label(self, image = pusty)
+        self.obraz.image = pusty
+        self.obraz.grid(row = 28, rowspan = 30, column = 1, columnspan = 20)
+
+
+
+
 
 #==============================================================================
         # etykieta z pustą linią '0' -'' - lewa ramka - kolumna '0'
@@ -582,4 +602,5 @@ Podaj współczynniki równania kwadratowego\n \
 root = Tk()
 root.title('RÓWNANIE KWADRATOWE')
 app = Application(root)
+
 root.mainloop()
