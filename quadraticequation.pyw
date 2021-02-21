@@ -2,10 +2,10 @@
 from tkinter import *
 from math import *
 
-from rkplot import *
-from rkraddegr import *
-from rkequatios import *
-from rkdeltaroots import *
+from qeplot import *
+from qeraddegr import *
+from qeequations import *
+from qedeltaroots import *
 first = 0
 last = 7 
 
